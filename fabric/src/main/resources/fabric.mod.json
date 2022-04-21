@@ -21,6 +21,9 @@
         "adapter": "kotlin",
         "value": "net.tjalp.swextra.fabric.SwExtraFabric"
       }
+    ],
+    "modmenu": [
+      "net.tjalp.swextra.fabric.integration.ModMenuIntegration"
     ]
   },
   "mixins": [

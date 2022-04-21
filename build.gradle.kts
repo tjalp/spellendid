@@ -55,5 +55,7 @@ subprojects {
         mavenCentral()
         gradlePluginPortal()
         maven("https://jitpack.io") { name = "Jitpack" }
+        maven("https://maven.shedaniel.me/") { name = "Shedaniel" }
+        maven("https://maven.terraformersmc.com/releases/") { name = "TerraformersMC" }
     }
 }

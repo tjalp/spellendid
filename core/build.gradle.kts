@@ -9,4 +9,6 @@ dependencies {
     implementation("org.apache.logging.log4j:log4j-core:$log4jVersion")
     val discordIpcVersion: String by project
     implementation("com.github.jagrosh:DiscordIPC:$discordIpcVersion")
+    val gsonVersion: String by project
+    implementation("com.google.code.gson:gson:$gsonVersion")
 }

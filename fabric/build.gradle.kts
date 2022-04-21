@@ -20,6 +20,13 @@ dependencies {
 
     implementation(project(":core"))
     include(project(":core"))
+
+    val clothConfigApiVersion: String by project
+    modApi("me.shedaniel.cloth:cloth-config-fabric:$clothConfigApiVersion") {
+        exclude(group = "net.fabricmc.fabric-api")
+    }
+    val modMenuVersion: String by project
+    modImplementation("com.terraformersmc:modmenu:$modMenuVersion")
 }
 
 loom {

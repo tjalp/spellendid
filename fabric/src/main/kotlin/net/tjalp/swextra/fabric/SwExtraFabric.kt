@@ -6,12 +6,15 @@ import net.fabricmc.loader.impl.FabricLoaderImpl
 import net.tjalp.swextra.core.SwExtra
 import net.tjalp.swextra.core.platform.Platform
 import net.tjalp.swextra.fabric.platform.PlatformImpl
+import java.nio.file.Path
 
 /**
  * The Fabric mod initializer for SwExtra
  */
 object SwExtraFabric : ClientModInitializer, SwExtra() {
     val METADATA: ModMetadata = FabricLoaderImpl.INSTANCE.getModContainer(MOD_ID).map { it.metadata }.orElseThrow()
+
+    override var configPath: Path = FabricLoaderImpl.INSTANCE.configDir.resolve("swextra.json")
 
     override fun onInitializeClient() {
         init()
