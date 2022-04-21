@@ -21,7 +21,7 @@ subprojects {
 
     base {
         val archivesBaseName: String by project
-        archivesName.set(archivesBaseName)
+        archivesName.set(archivesBaseName + "-" + this.archivesName.get())
     }
 
     tasks {
