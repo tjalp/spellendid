@@ -8,6 +8,7 @@ repositories {}
 
 dependencies {
     implementation(project(":core"))
+    include(project(":core"))
     val minecraftVersion: String by project
     minecraft("com.mojang:minecraft:$minecraftVersion")
     val yarnMappings: String by project
