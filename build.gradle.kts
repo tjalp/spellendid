@@ -54,5 +54,6 @@ subprojects {
         maven("https://maven.fabricmc.net") { name = "Fabric" }
         mavenCentral()
         gradlePluginPortal()
+        maven("https://jitpack.io") { name = "Jitpack" }
     }
 }

@@ -3,6 +3,11 @@ package net.tjalp.swextra.core.platform
 interface Platform {
 
     /**
+     * The mod name
+     */
+    val name: String
+
+    /**
      * The current platform name
      */
     val platformName: String
@@ -11,4 +16,14 @@ interface Platform {
      * Whether the current environment is a development environment
      */
     val isDevelopmentEnvironment: Boolean
+
+    /**
+     * The display version of the current platform
+     */
+    val displayVersion: String
+
+    /**
+     * The version of the current platform
+     */
+    val version: String
 }
