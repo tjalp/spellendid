@@ -10,7 +10,7 @@
   "contact": {
     "homepage": "https://tjalp.net/",
     "issues": "https://github.com/tjalp/swextra/issues/",
-    "sources": "https://tjalp.net/"
+    "sources": "https://github.com/tjalp/swextra/"
   },
   "license": "GNU General Public License v3.0 (GPLv3)",
   "icon": "assets/swextra/icon.png",
