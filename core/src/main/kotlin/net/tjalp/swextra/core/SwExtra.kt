@@ -39,10 +39,12 @@ abstract class SwExtra {
         /** The mod identifier */
         const val MOD_ID = "swextra"
 
+        /** The Discord application ID */
+        const val DISCORD_APP_ID = 966012623780990977L
+
         /** The current logger */
         val LOGGER: Logger = LogManager.getLogger()
 
-        /** The Discord application ID */
-        val DISCORD_APP_ID = 966012623780990977L
+
     }
 }
