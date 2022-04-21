@@ -19,8 +19,5 @@ object SwExtraFabric: ClientModInitializer, SwExtra() {
         super.postInit()
     }
 
-    /**
-     * Initialize the current platform
-     */
     override fun initPlatform(): Platform = PlatformImpl()
 }
