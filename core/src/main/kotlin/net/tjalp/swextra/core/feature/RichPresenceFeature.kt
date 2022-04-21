@@ -23,7 +23,7 @@ class RichPresenceFeature {
     fun init() {
         SwExtra.LOGGER.info("Initializing Rich Presence feature...")
         try {
-            this.client = IPCClient(966012623780990977L)
+            this.client = IPCClient(SwExtra.DISCORD_APP_ID)
             this.client.setListener(object : IPCListener {
                 override fun onReady(client: IPCClient) {
                     this@RichPresenceFeature.initialized = true
