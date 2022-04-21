@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 1,
+  "id": "swextra",
+  "version": "${version}",
+  "name": "Smash Wizards Extra",
+  "description": "An extension mod specifically designed for Smash Wizards, a magical Minecraft server",
+  "authors": [
+    "tjalp"
+  ],
+  "contact": {
+    "homepage": "https://tjalp.net/",
+    "issues": "https://github.com/tjalp/swextra/issues/",
+    "sources": "https://tjalp.net/"
+  },
+  "license": "GNU General Public License v3.0 (GPLv3)",
+  "icon": "assets/swextra/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "client": [
+      {
+        "adapter": "kotlin",
+        "value": "net.tjalp.swextra.fabric.SwExtraFabric"
+      }
+    ]
+  },
+  "mixins": [
+    "swextra.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.13.3",
+    "fabric": "*",
+    "fabric-language-kotlin": ">=1.7.2+kotlin.1.6.20",
+    "minecraft": "1.18.x",
+    "java": ">=17"
+  }
+}
