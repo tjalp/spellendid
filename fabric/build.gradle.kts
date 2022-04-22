@@ -27,6 +27,12 @@ dependencies {
     }
     val modMenuVersion: String by project
     modImplementation("com.terraformersmc:modmenu:$modMenuVersion")
+
+    val discordIpcVersion: String by project
+    include("com.github.jagrosh:DiscordIPC:$discordIpcVersion")
+
+    val jsonVersion: String by project
+    include("org.json:json:$jsonVersion")
 }
 
 loom {

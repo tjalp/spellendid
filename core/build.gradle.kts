@@ -5,10 +5,12 @@ plugins {
 
 dependencies {
     val log4jVersion: String by project
-    implementation("org.apache.logging.log4j:log4j-api:$log4jVersion")
-    implementation("org.apache.logging.log4j:log4j-core:$log4jVersion")
+    api("org.apache.logging.log4j:log4j-api:$log4jVersion")
+    api("org.apache.logging.log4j:log4j-core:$log4jVersion")
     val discordIpcVersion: String by project
-    implementation("com.github.jagrosh:DiscordIPC:$discordIpcVersion")
+    api("com.github.jagrosh:DiscordIPC:$discordIpcVersion")
     val gsonVersion: String by project
-    implementation("com.google.code.gson:gson:$gsonVersion")
+    api("com.google.code.gson:gson:$gsonVersion")
+    val jsonVersion: String by project
+    api("org.json:json:$jsonVersion")
 }
