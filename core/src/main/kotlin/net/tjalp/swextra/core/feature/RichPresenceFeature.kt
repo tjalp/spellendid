@@ -5,7 +5,6 @@ import com.jagrosh.discordipc.IPCListener
 import com.jagrosh.discordipc.entities.DiscordBuild
 import com.jagrosh.discordipc.entities.RichPresence
 import net.tjalp.swextra.core.SwExtra
-import net.tjalp.swextra.core.platform.Platform
 import net.tjalp.swextra.core.util.EXECUTOR_SERVICE
 import java.time.Instant
 import java.time.OffsetDateTime
@@ -45,8 +44,9 @@ class RichPresenceFeature {
      * Update the Rich Presence
      */
     fun update() {
-        val handler = SwExtra.INSTANCE.networkHandler
-        if (!handler.connected) {
+        val swExtra = SwExtra.INSTANCE
+        val handler = swExtra.networkHandler
+        if (!swExtra.config.enableRichPresenceFeature || !handler.connected) {
             this.client.sendRichPresence(null)
             return
         }
