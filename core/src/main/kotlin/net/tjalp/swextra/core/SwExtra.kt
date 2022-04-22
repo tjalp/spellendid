@@ -3,6 +3,7 @@ package net.tjalp.swextra.core
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import net.tjalp.swextra.core.feature.RichPresenceFeature
+import net.tjalp.swextra.core.networking.NetworkHandler
 import net.tjalp.swextra.core.platform.Platform
 import org.apache.logging.log4j.LogManager
 import org.apache.logging.log4j.Logger
@@ -22,11 +23,14 @@ abstract class SwExtra {
     /** The configuration */
     lateinit var config: SwConfig; private set
 
+    abstract var networkHandler: NetworkHandler<*>
+
     /**
      * Initialize the SwExtra core
      */
     fun init() {
         LOGGER.info("Initializing ${this::class.simpleName}...")
+        INSTANCE = this
 
         this.platform = initPlatform()
 
@@ -62,6 +66,9 @@ abstract class SwExtra {
 
         /** The Gson object that will have pretty printing enabled */
         val GSON_PRETTY: Gson = GsonBuilder().setPrettyPrinting().create()
+
+        /** The current instance of the SwExtra class */
+        lateinit var INSTANCE: SwExtra
 
     }
 }
