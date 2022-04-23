@@ -1,7 +1,12 @@
 {
+  "category.swextra.discord": "Discord",
   "category.swextra.general": "General",
   "option.swextra.enable_rich_presence": "Enable Discord Rich Presence",
   "option.swextra.enable_rich_presence.tooltip": "Whether or not a rich presence should be displayed on your Discord client",
+  "option.swextra.rich_presence_display_time": "Display Time In Rich Presence",
+  "option.swextra.rich_presence_display_time.tooltip": "Display the time you've been on Smash Wizards for in your Discord rich presence",
+  "option.swextra.rich_presence_display_server": "Display Server In Rich Presence",
+  "option.swextra.rich_presence_display_server.tooltip": "Display the server you're currently connected to in your Discord rich presence",
   "option.swextra.remove_loading_terrain_delay": "Remove Loading Terrain Delay",
   "option.swextra.remove_loading_terrain_delay.tooltip": "Remove the built-in 2 seconds loading screen delay when loading new terrain",
   "option.swextra.remove_loading_terrain_delay_everywhere": "Remove Loading Terrain Delay Everywhere",

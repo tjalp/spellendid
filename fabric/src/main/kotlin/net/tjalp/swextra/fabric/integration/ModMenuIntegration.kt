@@ -23,15 +23,6 @@ class ModMenuIntegration : ModMenuApi {
 
             builder.getOrCreateCategory(TranslatableText("category.swextra.general")).apply {
                 addEntry(builder.entryBuilder()
-                    .startBooleanToggle(TranslatableText("option.swextra.enable_rich_presence"), config.enableRichPresenceFeature)
-                    .setTooltip(TranslatableText("option.swextra.enable_rich_presence.tooltip"))
-                    .setDefaultValue(true)
-                    .setSaveConsumer {
-                        config.enableRichPresenceFeature = it
-                    }
-                    .build())
-
-                addEntry(builder.entryBuilder()
                     .startBooleanToggle(TranslatableText("option.swextra.remove_loading_terrain_delay"), config.removeLoadingTerrainDelay)
                     .setTooltip(TranslatableText("option.swextra.remove_loading_terrain_delay.tooltip"))
                     .setDefaultValue(true)
@@ -46,6 +37,35 @@ class ModMenuIntegration : ModMenuApi {
                     .setDefaultValue(true)
                     .setSaveConsumer {
                         config.removeLoadingTerrainDelayEverywhere = it
+                    }
+                    .build())
+            }
+
+            builder.getOrCreateCategory(TranslatableText("category.swextra.discord")).apply {
+                addEntry(builder.entryBuilder()
+                    .startBooleanToggle(TranslatableText("option.swextra.enable_rich_presence"), config.enableRichPresenceFeature)
+                    .setTooltip(TranslatableText("option.swextra.enable_rich_presence.tooltip"))
+                    .setDefaultValue(true)
+                    .setSaveConsumer {
+                        config.enableRichPresenceFeature = it
+                    }
+                    .build())
+
+                addEntry(builder.entryBuilder()
+                    .startBooleanToggle(TranslatableText("option.swextra.rich_presence_display_time"), config.richPresenceDisplayTime)
+                    .setTooltip(TranslatableText("option.swextra.rich_presence_display_time.tooltip"))
+                    .setDefaultValue(true)
+                    .setSaveConsumer {
+                        config.richPresenceDisplayTime = it
+                    }
+                    .build())
+
+                addEntry(builder.entryBuilder()
+                    .startBooleanToggle(TranslatableText("option.swextra.rich_presence_display_server"), config.richPresenceDisplayServer)
+                    .setTooltip(TranslatableText("option.swextra.rich_presence_display_server.tooltip"))
+                    .setDefaultValue(true)
+                    .setSaveConsumer {
+                        config.richPresenceDisplayServer = it
                     }
                     .build())
             }

@@ -19,6 +19,7 @@ class RichPresenceFeature {
 
     private lateinit var client: IPCClient
     private var initialized = false
+    private val config = SwExtra.INSTANCE.config
 
     /**
      * Initialize the Rich Presence feature
@@ -47,18 +48,19 @@ class RichPresenceFeature {
     fun update() {
         val swExtra = SwExtra.INSTANCE
         val handler = swExtra.networkHandler
-        if (!swExtra.config.enableRichPresenceFeature || !handler.connected) {
+        if (!config.enableRichPresenceFeature || !handler.connected) {
             this.client.sendRichPresence(null)
             return
         }
+
         this.client.sendRichPresence(
-            RichPresence.Builder()
-                .setDetails("play.smashwizards.net")
-                .setState("Connected to FFA-3")
-                .setParty(UUID.randomUUID().toString(), 1, 4)
-                .setStartTimestamp(OffsetDateTime.ofInstant(Instant.ofEpochSecond(handler.connectTime), ZoneId.systemDefault()))
-                .setLargeImage("sw-icon-fancy")
-                .build()
+            RichPresence.Builder().apply {
+                setDetails("play.smashwizards.net")
+                if (config.richPresenceDisplayServer) setState("Connected to FFA-3")
+                setParty(UUID.randomUUID().toString(), 1, 4)
+                if (config.richPresenceDisplayTime) setStartTimestamp(OffsetDateTime.ofInstant(Instant.ofEpochSecond(handler.connectTime), ZoneId.systemDefault()))
+                setLargeImage("sw-icon-fancy")
+            }.build()
         )
     }
 }

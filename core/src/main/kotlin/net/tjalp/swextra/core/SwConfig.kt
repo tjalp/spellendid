@@ -11,9 +11,10 @@ import kotlin.io.path.writeText
 open class SwConfig {
 
     var enableRichPresenceFeature: Boolean = true
+    var richPresenceDisplayTime: Boolean = true
+    var richPresenceDisplayServer: Boolean = true
 
     var removeLoadingTerrainDelay: Boolean = true
-
     var removeLoadingTerrainDelayEverywhere: Boolean = true
 
     companion object {
