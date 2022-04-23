@@ -1,10 +1,14 @@
 package net.tjalp.swextra.fabric.networking
 
+import net.fabricmc.fabric.api.client.networking.v1.ClientPlayConnectionEvents
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking
+import net.minecraft.client.MinecraftClient
 import net.minecraft.util.Identifier
 import net.tjalp.swextra.core.SwExtra
 import net.tjalp.swextra.core.networking.NetworkHandler
+import net.tjalp.swextra.core.util.EXECUTOR_SERVICE
 import net.tjalp.swextra.fabric.SwExtraFabric
+import java.util.concurrent.TimeUnit
 
 class FabricNetworkHandler : NetworkHandler<Identifier>() {
 
@@ -16,9 +20,16 @@ class FabricNetworkHandler : NetworkHandler<Identifier>() {
         ClientPlayNetworking.registerGlobalReceiver(Identifier(Identifier.DEFAULT_NAMESPACE, "brand")) {
                 _, _, buf, _ ->
             val brand = buf.readString()
+            // Fix brand showing up as "null"
+            EXECUTOR_SERVICE.schedule({
+                MinecraftClient.getInstance().player?.serverBrand = brand
+            }, 1L, TimeUnit.SECONDS)
             if (SwExtraFabric.platform.isDevelopmentEnvironment || brand.contains("Smash Wizards")) {
                 connect()
             }
+        }
+        ClientPlayConnectionEvents.DISCONNECT.register { _, _ ->
+            if (connected) disconnect()
         }
     }
 

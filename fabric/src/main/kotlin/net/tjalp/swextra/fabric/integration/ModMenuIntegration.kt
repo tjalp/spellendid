@@ -8,6 +8,10 @@ import net.minecraft.text.TranslatableText
 import net.tjalp.swextra.core.SwConfig
 import net.tjalp.swextra.fabric.SwExtraFabric
 
+/**
+ * The ModMenu integration
+ * This will add a button to the ModMenu mod to open the config screen
+ */
 class ModMenuIntegration : ModMenuApi {
 
     override fun getModConfigScreenFactory(): ConfigScreenFactory<*> {

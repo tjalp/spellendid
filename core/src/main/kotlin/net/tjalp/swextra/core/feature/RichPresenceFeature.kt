@@ -9,6 +9,7 @@ import net.tjalp.swextra.core.util.EXECUTOR_SERVICE
 import java.time.Instant
 import java.time.OffsetDateTime
 import java.time.ZoneId
+import java.util.*
 import java.util.concurrent.TimeUnit
 
 /**
@@ -52,9 +53,11 @@ class RichPresenceFeature {
         }
         this.client.sendRichPresence(
             RichPresence.Builder()
-                .setDetails("In the lobby")
+                .setDetails("play.smashwizards.net")
+                .setState("Connected to FFA-3")
+                .setParty(UUID.randomUUID().toString(), 1, 4)
                 .setStartTimestamp(OffsetDateTime.ofInstant(Instant.ofEpochSecond(handler.connectTime), ZoneId.systemDefault()))
-                .setLargeImage("sw-icon-round")
+                .setLargeImage("sw-icon-fancy")
                 .build()
         )
     }
