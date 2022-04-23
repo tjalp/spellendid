@@ -5,6 +5,6 @@
   "option.swextra.remove_loading_terrain_delay": "Remove Loading Terrain Delay",
   "option.swextra.remove_loading_terrain_delay.tooltip": "Remove the built-in 2 seconds loading screen delay when loading new terrain",
   "option.swextra.remove_loading_terrain_delay_everywhere": "Remove Loading Terrain Delay Everywhere",
-  "option.swextra.remove_loading_terrain_delay_everywhere.tooltip": "Remove the loading terrain delay everywhere.\nThe 'Remove Loading Terrain Delay' option must be true for this to work",
+  "option.swextra.remove_loading_terrain_delay_everywhere.tooltip": "Remove the loading terrain delay everywhere (on every server & world).\nThe 'Remove Loading Terrain Delay' option must be true for this to work",
   "title.swextra.config": "Smash Wizards Extra Configuration"
 }
