@@ -39,6 +39,15 @@ class ModMenuIntegration : ModMenuApi {
                         config.removeLoadingTerrainDelayEverywhere = it
                     }
                     .build())
+
+                addEntry(builder.entryBuilder()
+                    .startBooleanToggle(TranslatableText("option.swextra.play_fall_damage_sounds"), config.playFallDamageSounds)
+                    .setTooltip(TranslatableText("option.swextra.play_fall_damage_sounds.tooltip"))
+                    .setDefaultValue(false)
+                    .setSaveConsumer {
+                        config.playFallDamageSounds = it
+                    }
+                    .build())
             }
 
             builder.getOrCreateCategory(TranslatableText("category.swextra.discord")).apply {

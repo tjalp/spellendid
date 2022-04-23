@@ -16,6 +16,7 @@ open class SwConfig {
 
     var removeLoadingTerrainDelay: Boolean = true
     var removeLoadingTerrainDelayEverywhere: Boolean = true
+    var playFallDamageSounds: Boolean = false
 
     companion object {
 
