@@ -24,8 +24,9 @@ class FabricNetworkHandler : NetworkHandler<Identifier>() {
             EXECUTOR_SERVICE.schedule({
                 MinecraftClient.getInstance().player?.serverBrand = brand
             }, 1L, TimeUnit.SECONDS)
+            // TODO - Improve the way Smash Wizards is detected
             if (SwExtraFabric.platform.isDevelopmentEnvironment || brand.contains("Smash Wizards")) {
-                connect()
+                if (!connected) connect()
             }
         }
         ClientPlayConnectionEvents.DISCONNECT.register { _, _ ->
