@@ -12,6 +12,10 @@ open class SwConfig {
 
     var enableRichPresenceFeature: Boolean = true
 
+    var removeLoadingTerrainDelay: Boolean = true
+
+    var removeLoadingTerrainDelayEverywhere: Boolean = true
+
     companion object {
 
         /**

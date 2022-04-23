@@ -16,22 +16,42 @@ class ModMenuIntegration : ModMenuApi {
 
     override fun getModConfigScreenFactory(): ConfigScreenFactory<*> {
         return ConfigScreenFactory { parent: Screen? ->
+            val config = SwExtraFabric.config
             val builder = ConfigBuilder.create()
                 .setParentScreen(parent)
                 .setTitle(TranslatableText("title.swextra.config"))
 
             builder.getOrCreateCategory(TranslatableText("category.swextra.general")).apply {
                 addEntry(builder.entryBuilder()
-                    .startBooleanToggle(TranslatableText("option.swextra.enable_rich_presence"), SwExtraFabric.config.enableRichPresenceFeature)
+                    .startBooleanToggle(TranslatableText("option.swextra.enable_rich_presence"), config.enableRichPresenceFeature)
+                    .setTooltip(TranslatableText("option.swextra.enable_rich_presence.tooltip"))
                     .setDefaultValue(true)
                     .setSaveConsumer {
-                        SwExtraFabric.config.enableRichPresenceFeature = it
+                        config.enableRichPresenceFeature = it
+                    }
+                    .build())
+
+                addEntry(builder.entryBuilder()
+                    .startBooleanToggle(TranslatableText("option.swextra.remove_loading_terrain_delay"), config.removeLoadingTerrainDelay)
+                    .setTooltip(TranslatableText("option.swextra.remove_loading_terrain_delay.tooltip"))
+                    .setDefaultValue(true)
+                    .setSaveConsumer {
+                        config.removeLoadingTerrainDelay = it
+                    }
+                    .build())
+
+                addEntry(builder.entryBuilder()
+                    .startBooleanToggle(TranslatableText("option.swextra.remove_loading_terrain_delay_everywhere"), config.removeLoadingTerrainDelayEverywhere)
+                    .setTooltip(TranslatableText("option.swextra.remove_loading_terrain_delay_everywhere.tooltip"))
+                    .setDefaultValue(true)
+                    .setSaveConsumer {
+                        config.removeLoadingTerrainDelayEverywhere = it
                     }
                     .build())
             }
 
             builder.setSavingRunnable {
-                SwConfig.save(SwExtraFabric.configPath, SwExtraFabric.config)
+                SwConfig.save(SwExtraFabric.configPath, config)
             }
 
             return@ConfigScreenFactory builder.build()
