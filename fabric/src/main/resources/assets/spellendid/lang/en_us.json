@@ -1,6 +1,7 @@
 {
   "category.spellendid.discord": "Discord",
   "category.spellendid.general": "General",
+  "options.spellendid.title": "Spellendid",
   "option.spellendid.enable_rich_presence": "Enable Discord Rich Presence",
   "option.spellendid.enable_rich_presence.tooltip": "Whether or not a rich presence should be displayed on your Discord client",
   "option.spellendid.rich_presence_display_time": "Display Time In Rich Presence",

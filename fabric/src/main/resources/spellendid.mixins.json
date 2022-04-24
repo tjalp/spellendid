@@ -6,8 +6,9 @@
     "defaultRequire": 1
   },
   "mixins": [
+    "ClientPlayerEntityMixin",
     "DownloadingTerrainScreenAccessor",
     "DownloadingTerrainScreenMixin",
-    "ClientPlayerEntityMixin"
+    "OptionsScreenMixin"
   ]
 }
