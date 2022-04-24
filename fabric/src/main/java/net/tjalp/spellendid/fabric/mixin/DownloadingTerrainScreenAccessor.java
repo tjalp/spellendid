@@ -1,4 +1,4 @@
-package net.tjalp.swextra.fabric.mixin;
+package net.tjalp.spellendid.fabric.mixin;
 
 import net.minecraft.client.gui.screen.DownloadingTerrainScreen;
 import org.spongepowered.asm.mixin.Mixin;

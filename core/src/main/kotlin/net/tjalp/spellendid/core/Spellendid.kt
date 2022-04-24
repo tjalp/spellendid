@@ -1,18 +1,18 @@
-package net.tjalp.swextra.core
+package net.tjalp.spellendid.core
 
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
-import net.tjalp.swextra.core.feature.RichPresenceFeature
-import net.tjalp.swextra.core.networking.NetworkHandler
-import net.tjalp.swextra.core.platform.Platform
+import net.tjalp.spellendid.core.feature.RichPresenceFeature
+import net.tjalp.spellendid.core.networking.NetworkHandler
+import net.tjalp.spellendid.core.platform.Platform
 import org.apache.logging.log4j.LogManager
 import org.apache.logging.log4j.Logger
 import java.nio.file.Path
 
 /**
- * The main class of the SwExtra mod
+ * The main class of the Spellendid mod
  */
-abstract class SwExtra {
+abstract class Spellendid {
 
     /** The platform that is currently running */
     lateinit var platform: Platform; private set
@@ -21,12 +21,12 @@ abstract class SwExtra {
     abstract var configPath: Path
 
     /** The configuration */
-    lateinit var config: SwConfig; private set
+    lateinit var config: SpellendidConfig; private set
 
     abstract var networkHandler: NetworkHandler<*>
 
     /**
-     * Initialize the SwExtra core
+     * Initialize the Spellendid core
      */
     fun init() {
         LOGGER.info("Initializing ${this::class.simpleName}...")
@@ -40,7 +40,7 @@ abstract class SwExtra {
                 "and the current version is ${this.platform.displayVersion}")
 
         // Initialize the config
-        this.config = SwConfig.read(this.configPath)
+        this.config = SpellendidConfig.read(this.configPath)
 
         RichPresenceFeature().init()
     }
@@ -53,7 +53,7 @@ abstract class SwExtra {
     companion object {
 
         /** The mod identifier */
-        const val MOD_ID = "swextra"
+        const val MOD_ID = "spellendid"
 
         /** The Discord application ID */
         const val DISCORD_APP_ID = 966012623780990977L
@@ -67,8 +67,8 @@ abstract class SwExtra {
         /** The Gson object that will have pretty printing enabled */
         val GSON_PRETTY: Gson = GsonBuilder().setPrettyPrinting().create()
 
-        /** The current instance of the SwExtra class */
-        lateinit var INSTANCE: SwExtra
+        /** The current instance of the Spellendid class */
+        lateinit var INSTANCE: Spellendid
 
     }
 }

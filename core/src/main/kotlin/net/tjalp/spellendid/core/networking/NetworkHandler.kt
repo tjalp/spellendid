@@ -1,4 +1,4 @@
-package net.tjalp.swextra.core.networking
+package net.tjalp.spellendid.core.networking
 
 /**
  * The networking handler which handles all the networking.

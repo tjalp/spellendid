@@ -1,16 +1,16 @@
-package net.tjalp.swextra.fabric.platform
+package net.tjalp.spellendid.fabric.platform
 
 import net.fabricmc.loader.impl.FabricLoaderImpl
-import net.tjalp.swextra.core.platform.Platform
-import net.tjalp.swextra.fabric.SwExtraFabric
+import net.tjalp.spellendid.core.platform.Platform
+import net.tjalp.spellendid.fabric.SpellendidFabric
 
 class PlatformImpl : Platform {
 
-    override val name: String = SwExtraFabric.METADATA.name
+    override val name: String = SpellendidFabric.METADATA.name
     override val platformName: String = "Fabric"
     override val isDevelopmentEnvironment: Boolean = FabricLoaderImpl.INSTANCE.isDevelopmentEnvironment
     override val displayVersion: String
         get() = version + (if (isDevelopmentEnvironment) "-dev" else "")
-    override val version: String = SwExtraFabric.METADATA.version.friendlyString
+    override val version: String = SpellendidFabric.METADATA.version.friendlyString
 
 }

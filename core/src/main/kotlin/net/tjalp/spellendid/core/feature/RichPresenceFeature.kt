@@ -1,11 +1,11 @@
-package net.tjalp.swextra.core.feature
+package net.tjalp.spellendid.core.feature
 
 import com.jagrosh.discordipc.IPCClient
 import com.jagrosh.discordipc.IPCListener
 import com.jagrosh.discordipc.entities.DiscordBuild
 import com.jagrosh.discordipc.entities.RichPresence
-import net.tjalp.swextra.core.SwExtra
-import net.tjalp.swextra.core.util.EXECUTOR_SERVICE
+import net.tjalp.spellendid.core.Spellendid
+import net.tjalp.spellendid.core.util.EXECUTOR_SERVICE
 import java.time.Instant
 import java.time.OffsetDateTime
 import java.time.ZoneId
@@ -19,15 +19,15 @@ class RichPresenceFeature {
 
     private lateinit var client: IPCClient
     private var initialized = false
-    private val config = SwExtra.INSTANCE.config
+    private val config = Spellendid.INSTANCE.config
 
     /**
      * Initialize the Rich Presence feature
      */
     fun init() {
-        SwExtra.LOGGER.info("Initializing Rich Presence feature...")
+        Spellendid.LOGGER.info("Initializing Rich Presence feature...")
         try {
-            this.client = IPCClient(SwExtra.DISCORD_APP_ID)
+            this.client = IPCClient(Spellendid.DISCORD_APP_ID)
             this.client.setListener(object : IPCListener {
                 override fun onReady(client: IPCClient) {
                     this@RichPresenceFeature.initialized = true
@@ -38,7 +38,7 @@ class RichPresenceFeature {
             })
             this.client.connect(DiscordBuild.ANY)
         } catch (ex: Exception) {
-            SwExtra.LOGGER.error("Failed to initialize Rich Presence feature", ex)
+            Spellendid.LOGGER.error("Failed to initialize Rich Presence feature", ex)
         }
     }
 
@@ -46,8 +46,8 @@ class RichPresenceFeature {
      * Update the Rich Presence
      */
     fun update() {
-        val swExtra = SwExtra.INSTANCE
-        val handler = swExtra.networkHandler
+        val spellendid = Spellendid.INSTANCE
+        val handler = spellendid.networkHandler
         if (!config.enableRichPresenceFeature || !handler.connected) {
             this.client.sendRichPresence(null)
             return

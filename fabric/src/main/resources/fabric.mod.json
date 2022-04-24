@@ -1,33 +1,33 @@
 {
   "schemaVersion": 1,
-  "id": "swextra",
+  "id": "spellendid",
   "version": "${version}",
-  "name": "Smash Wizards Extra",
+  "name": "Spellendid",
   "description": "An extension mod specifically designed for Smash Wizards, a magical Minecraft server",
   "authors": [
     "tjalp"
   ],
   "contact": {
     "homepage": "https://tjalp.net/",
-    "issues": "https://github.com/tjalp/swextra/issues/",
-    "sources": "https://github.com/tjalp/swextra/"
+    "issues": "https://github.com/tjalp/spellendid/issues/",
+    "sources": "https://github.com/tjalp/spellendid/"
   },
   "license": "GNU General Public License v3.0 (GPLv3)",
-  "icon": "assets/swextra/icon.png",
+  "icon": "assets/spellendid/icon.png",
   "environment": "*",
   "entrypoints": {
     "client": [
       {
         "adapter": "kotlin",
-        "value": "net.tjalp.swextra.fabric.SwExtraFabric"
+        "value": "net.tjalp.spellendid.fabric.SpellendidFabric"
       }
     ],
     "modmenu": [
-      "net.tjalp.swextra.fabric.integration.ModMenuIntegration"
+      "net.tjalp.spellendid.fabric.integration.ModMenuIntegration"
     ]
   },
   "mixins": [
-    "swextra.mixins.json"
+    "spellendid.mixins.json"
   ],
   "depends": {
     "fabricloader": ">=0.13.3",

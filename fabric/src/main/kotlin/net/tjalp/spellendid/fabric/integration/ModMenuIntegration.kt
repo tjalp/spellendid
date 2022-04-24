@@ -1,12 +1,12 @@
-package net.tjalp.swextra.fabric.integration
+package net.tjalp.spellendid.fabric.integration
 
 import com.terraformersmc.modmenu.api.ConfigScreenFactory
 import com.terraformersmc.modmenu.api.ModMenuApi
 import me.shedaniel.clothconfig2.api.ConfigBuilder
 import net.minecraft.client.gui.screen.Screen
 import net.minecraft.text.TranslatableText
-import net.tjalp.swextra.core.SwConfig
-import net.tjalp.swextra.fabric.SwExtraFabric
+import net.tjalp.spellendid.core.SpellendidConfig
+import net.tjalp.spellendid.fabric.SpellendidFabric
 
 /**
  * The ModMenu integration
@@ -16,15 +16,15 @@ class ModMenuIntegration : ModMenuApi {
 
     override fun getModConfigScreenFactory(): ConfigScreenFactory<*> {
         return ConfigScreenFactory { parent: Screen? ->
-            val config = SwExtraFabric.config
+            val config = SpellendidFabric.config
             val builder = ConfigBuilder.create()
                 .setParentScreen(parent)
-                .setTitle(TranslatableText("title.swextra.config"))
+                .setTitle(TranslatableText("title.spellendid.config"))
 
-            builder.getOrCreateCategory(TranslatableText("category.swextra.general")).apply {
+            builder.getOrCreateCategory(TranslatableText("category.spellendid.general")).apply {
                 addEntry(builder.entryBuilder()
-                    .startBooleanToggle(TranslatableText("option.swextra.remove_loading_terrain_delay"), config.removeLoadingTerrainDelay)
-                    .setTooltip(TranslatableText("option.swextra.remove_loading_terrain_delay.tooltip"))
+                    .startBooleanToggle(TranslatableText("option.spellendid.remove_loading_terrain_delay"), config.removeLoadingTerrainDelay)
+                    .setTooltip(TranslatableText("option.spellendid.remove_loading_terrain_delay.tooltip"))
                     .setDefaultValue(true)
                     .setSaveConsumer {
                         config.removeLoadingTerrainDelay = it
@@ -32,8 +32,8 @@ class ModMenuIntegration : ModMenuApi {
                     .build())
 
                 addEntry(builder.entryBuilder()
-                    .startBooleanToggle(TranslatableText("option.swextra.remove_loading_terrain_delay_everywhere"), config.removeLoadingTerrainDelayEverywhere)
-                    .setTooltip(TranslatableText("option.swextra.remove_loading_terrain_delay_everywhere.tooltip"))
+                    .startBooleanToggle(TranslatableText("option.spellendid.remove_loading_terrain_delay_everywhere"), config.removeLoadingTerrainDelayEverywhere)
+                    .setTooltip(TranslatableText("option.spellendid.remove_loading_terrain_delay_everywhere.tooltip"))
                     .setDefaultValue(true)
                     .setSaveConsumer {
                         config.removeLoadingTerrainDelayEverywhere = it
@@ -41,8 +41,8 @@ class ModMenuIntegration : ModMenuApi {
                     .build())
 
                 addEntry(builder.entryBuilder()
-                    .startBooleanToggle(TranslatableText("option.swextra.play_fall_damage_sounds"), config.playFallDamageSounds)
-                    .setTooltip(TranslatableText("option.swextra.play_fall_damage_sounds.tooltip"))
+                    .startBooleanToggle(TranslatableText("option.spellendid.play_fall_damage_sounds"), config.playFallDamageSounds)
+                    .setTooltip(TranslatableText("option.spellendid.play_fall_damage_sounds.tooltip"))
                     .setDefaultValue(false)
                     .setSaveConsumer {
                         config.playFallDamageSounds = it
@@ -50,10 +50,10 @@ class ModMenuIntegration : ModMenuApi {
                     .build())
             }
 
-            builder.getOrCreateCategory(TranslatableText("category.swextra.discord")).apply {
+            builder.getOrCreateCategory(TranslatableText("category.spellendid.discord")).apply {
                 addEntry(builder.entryBuilder()
-                    .startBooleanToggle(TranslatableText("option.swextra.enable_rich_presence"), config.enableRichPresenceFeature)
-                    .setTooltip(TranslatableText("option.swextra.enable_rich_presence.tooltip"))
+                    .startBooleanToggle(TranslatableText("option.spellendid.enable_rich_presence"), config.enableRichPresenceFeature)
+                    .setTooltip(TranslatableText("option.spellendid.enable_rich_presence.tooltip"))
                     .setDefaultValue(true)
                     .setSaveConsumer {
                         config.enableRichPresenceFeature = it
@@ -61,8 +61,8 @@ class ModMenuIntegration : ModMenuApi {
                     .build())
 
                 addEntry(builder.entryBuilder()
-                    .startBooleanToggle(TranslatableText("option.swextra.rich_presence_display_time"), config.richPresenceDisplayTime)
-                    .setTooltip(TranslatableText("option.swextra.rich_presence_display_time.tooltip"))
+                    .startBooleanToggle(TranslatableText("option.spellendid.rich_presence_display_time"), config.richPresenceDisplayTime)
+                    .setTooltip(TranslatableText("option.spellendid.rich_presence_display_time.tooltip"))
                     .setDefaultValue(true)
                     .setSaveConsumer {
                         config.richPresenceDisplayTime = it
@@ -70,8 +70,8 @@ class ModMenuIntegration : ModMenuApi {
                     .build())
 
                 addEntry(builder.entryBuilder()
-                    .startBooleanToggle(TranslatableText("option.swextra.rich_presence_display_server"), config.richPresenceDisplayServer)
-                    .setTooltip(TranslatableText("option.swextra.rich_presence_display_server.tooltip"))
+                    .startBooleanToggle(TranslatableText("option.spellendid.rich_presence_display_server"), config.richPresenceDisplayServer)
+                    .setTooltip(TranslatableText("option.spellendid.rich_presence_display_server.tooltip"))
                     .setDefaultValue(true)
                     .setSaveConsumer {
                         config.richPresenceDisplayServer = it
@@ -80,7 +80,7 @@ class ModMenuIntegration : ModMenuApi {
             }
 
             builder.setSavingRunnable {
-                SwConfig.save(SwExtraFabric.configPath, config)
+                SpellendidConfig.save(SpellendidFabric.configPath, config)
             }
 
             return@ConfigScreenFactory builder.build()

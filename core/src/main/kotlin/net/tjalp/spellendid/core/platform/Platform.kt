@@ -1,4 +1,4 @@
-package net.tjalp.swextra.core.platform
+package net.tjalp.spellendid.core.platform
 
 interface Platform {
 

@@ -1,13 +1,13 @@
-package net.tjalp.swextra.fabric.networking
+package net.tjalp.spellendid.fabric.networking
 
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayConnectionEvents
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking
 import net.minecraft.client.MinecraftClient
 import net.minecraft.util.Identifier
-import net.tjalp.swextra.core.SwExtra
-import net.tjalp.swextra.core.networking.NetworkHandler
-import net.tjalp.swextra.core.util.EXECUTOR_SERVICE
-import net.tjalp.swextra.fabric.SwExtraFabric
+import net.tjalp.spellendid.core.Spellendid
+import net.tjalp.spellendid.core.networking.NetworkHandler
+import net.tjalp.spellendid.core.util.EXECUTOR_SERVICE
+import net.tjalp.spellendid.fabric.SpellendidFabric
 import java.util.concurrent.TimeUnit
 
 class FabricNetworkHandler : NetworkHandler<Identifier>() {
@@ -25,7 +25,7 @@ class FabricNetworkHandler : NetworkHandler<Identifier>() {
                 MinecraftClient.getInstance().player?.serverBrand = brand
             }, 1L, TimeUnit.SECONDS)
             // TODO - Improve the way Smash Wizards is detected
-            if (SwExtraFabric.platform.isDevelopmentEnvironment || brand.contains("Smash Wizards")) {
+            if (SpellendidFabric.platform.isDevelopmentEnvironment || brand.contains("Smash Wizards")) {
                 if (!connected) connect()
             }
         }
@@ -35,12 +35,12 @@ class FabricNetworkHandler : NetworkHandler<Identifier>() {
     }
 
     override fun connect() {
-        SwExtra.LOGGER.warn("Connected to Smash Wizards!")
+        Spellendid.LOGGER.warn("Connected to Smash Wizards!")
         super.connect()
     }
 
     override fun disconnect() {
-        SwExtra.LOGGER.warn("Disconnected from Smash Wizards!")
+        Spellendid.LOGGER.warn("Disconnected from Smash Wizards!")
         super.disconnect()
     }
 }
