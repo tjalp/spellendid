@@ -34,11 +34,6 @@ abstract class Spellendid {
 
         this.platform = initPlatform()
 
-        // This will be removed later on
-        LOGGER.info("The current platform name is ${this.platform.platformName}, " +
-                "development environment is ${this.platform.isDevelopmentEnvironment} " +
-                "and the current version is ${this.platform.displayVersion}")
-
         // Initialize the config
         this.config = SpellendidConfig.read(this.configPath)
 
