@@ -10,13 +10,15 @@ import kotlin.io.path.writeText
  */
 open class SpellendidConfig {
 
-    var enableRichPresenceFeature: Boolean = true
-    var richPresenceDisplayTime: Boolean = true
-    var richPresenceDisplayServer: Boolean = true
+    var apiKey: String = ""
 
     var removeLoadingTerrainDelay: Boolean = true
     var removeLoadingTerrainDelayEverywhere: Boolean = true
     var playFallDamageSounds: Boolean = false
+
+    var enableRichPresenceFeature: Boolean = true
+    var richPresenceDisplayTime: Boolean = true
+    var richPresenceDisplayServer: Boolean = true
 
     companion object {
 

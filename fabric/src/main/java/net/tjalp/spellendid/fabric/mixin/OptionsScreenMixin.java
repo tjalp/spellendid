@@ -28,7 +28,7 @@ abstract class OptionsScreenMixin extends Screen {
                         this.height / 6 + 24 - 6,
                         310,
                         20,
-                        new TranslatableText("options.spellendid.title"),
+                        new TranslatableText("title.spellendid"),
                         (button) -> this.client.setScreen(SpellendidConfigFabric.INSTANCE.buildConfigScreen(this))
                 )
         );

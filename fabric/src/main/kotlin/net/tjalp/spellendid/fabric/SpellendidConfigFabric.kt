@@ -15,6 +15,15 @@ object SpellendidConfigFabric {
 
         builder.getOrCreateCategory(TranslatableText("category.spellendid.general")).apply {
             addEntry(builder.entryBuilder()
+                .startStrField(TranslatableText("option.spellendid.api_key"), config.apiKey)
+                .setTooltip(TranslatableText("option.spellendid.api_key.tooltip"))
+                .setDefaultValue("")
+                .setSaveConsumer {
+                    config.apiKey = it
+                }
+                .build())
+
+            addEntry(builder.entryBuilder()
                 .startBooleanToggle(TranslatableText("option.spellendid.remove_loading_terrain_delay"), config.removeLoadingTerrainDelay)
                 .setTooltip(TranslatableText("option.spellendid.remove_loading_terrain_delay.tooltip"))
                 .setDefaultValue(true)
