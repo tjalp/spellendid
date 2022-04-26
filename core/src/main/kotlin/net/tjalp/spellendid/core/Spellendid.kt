@@ -4,6 +4,7 @@ import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import net.tjalp.spellendid.core.feature.RichPresenceFeature
 import net.tjalp.spellendid.core.networking.NetworkHandler
+import net.tjalp.spellendid.core.networking.SpellendidTracker
 import net.tjalp.spellendid.core.platform.Platform
 import org.apache.logging.log4j.LogManager
 import org.apache.logging.log4j.Logger
@@ -25,12 +26,17 @@ abstract class Spellendid {
 
     abstract var networkHandler: NetworkHandler<*>
 
+    /** The tracker */
+    lateinit var tracker: SpellendidTracker; private set
+
     /**
      * Initialize the Spellendid core
      */
     fun init() {
         LOGGER.info("Initializing ${this::class.simpleName}...")
         INSTANCE = this
+
+        this.tracker = SpellendidTracker()
 
         this.platform = initPlatform()
 

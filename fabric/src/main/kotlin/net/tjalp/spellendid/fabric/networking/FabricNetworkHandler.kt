@@ -8,7 +8,10 @@ import net.minecraft.text.TranslatableText
 import net.minecraft.util.Identifier
 import net.tjalp.spellendid.core.Spellendid
 import net.tjalp.spellendid.core.networking.HANDSHAKE
+import net.tjalp.spellendid.core.networking.MATCH_INFO
 import net.tjalp.spellendid.core.networking.NetworkHandler
+import net.tjalp.spellendid.core.networking.packet.HandshakePacket
+import net.tjalp.spellendid.core.networking.packet.MatchInfoPacket
 import net.tjalp.spellendid.core.util.EXECUTOR_SERVICE
 import net.tjalp.spellendid.fabric.SpellendidFabric
 import java.util.concurrent.TimeUnit
@@ -28,13 +31,18 @@ class FabricNetworkHandler : NetworkHandler<Identifier>() {
         // TODO - Make a seperate class for every packet
 
         // Handshake to connect
-        ClientPlayNetworking.registerGlobalReceiver(Identifier(HANDSHAKE)) { _, _, _, _ ->
-            if (!connected) connect()
+        ClientPlayNetworking.registerGlobalReceiver(Identifier(HANDSHAKE)) { _, _, buf, _ ->
+            HandshakePacket(buf).handle()
         }
 
         // Disconnection
         ClientPlayConnectionEvents.DISCONNECT.register { _, _ ->
             if (connected) disconnect()
+        }
+
+        // Match info packet
+        ClientPlayNetworking.registerGlobalReceiver(Identifier(MATCH_INFO)) { _, _, buf, _ ->
+            MatchInfoPacket(buf).handle()
         }
     }
 

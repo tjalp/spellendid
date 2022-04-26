@@ -13,4 +13,6 @@ dependencies {
     api("com.google.code.gson:gson:$gsonVersion")
     val jsonVersion: String by project
     api("org.json:json:$jsonVersion")
+    val nettyVersion: String by project
+    api("io.netty:netty-all:$nettyVersion")
 }

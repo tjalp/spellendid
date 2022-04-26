@@ -48,6 +48,10 @@ class RichPresenceFeature {
     fun update() {
         val spellendid = Spellendid.INSTANCE
         val handler = spellendid.networkHandler
+        val tracker = spellendid.tracker
+        val currentServer = tracker.currentServer
+        val currentMatch = tracker.currentMatch
+
         if (!config.enableRichPresenceFeature || !handler.connected) {
             this.client.sendRichPresence(null)
             return
@@ -56,8 +60,8 @@ class RichPresenceFeature {
         this.client.sendRichPresence(
             RichPresence.Builder().apply {
                 setDetails("play.smashwizards.net")
-                if (config.richPresenceDisplayServer) setState("Connected to FFA-3")
-                setParty(UUID.randomUUID().toString(), 1, 4)
+                if (config.richPresenceDisplayServer && currentServer != null) setState("Connected to $currentServer")
+                if (currentMatch != null) setParty(UUID.randomUUID().toString(), currentMatch.currentPlayers, currentMatch.maxPlayers)
                 if (config.richPresenceDisplayTime) setStartTimestamp(OffsetDateTime.ofInstant(Instant.ofEpochSecond(handler.connectTime), ZoneId.systemDefault()))
                 setLargeImage("sw-icon-fancy")
             }.build()
