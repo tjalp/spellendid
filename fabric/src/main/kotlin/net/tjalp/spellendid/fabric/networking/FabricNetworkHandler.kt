@@ -10,8 +10,10 @@ import net.tjalp.spellendid.core.Spellendid
 import net.tjalp.spellendid.core.networking.HANDSHAKE
 import net.tjalp.spellendid.core.networking.MATCH_INFO
 import net.tjalp.spellendid.core.networking.NetworkHandler
+import net.tjalp.spellendid.core.networking.SERVER_INFO
 import net.tjalp.spellendid.core.networking.packet.HandshakePacket
 import net.tjalp.spellendid.core.networking.packet.MatchInfoPacket
+import net.tjalp.spellendid.core.networking.packet.ServerInfoPacket
 import net.tjalp.spellendid.core.util.EXECUTOR_SERVICE
 import net.tjalp.spellendid.fabric.SpellendidFabric
 import java.util.concurrent.TimeUnit
@@ -43,6 +45,11 @@ class FabricNetworkHandler : NetworkHandler<Identifier>() {
         // Match info packet
         ClientPlayNetworking.registerGlobalReceiver(Identifier(MATCH_INFO)) { _, _, buf, _ ->
             MatchInfoPacket(buf).handle()
+        }
+
+        // Server info packet
+        ClientPlayNetworking.registerGlobalReceiver(Identifier(SERVER_INFO)) { _, _, buf, _ ->
+            ServerInfoPacket(buf).handle()
         }
     }
 
