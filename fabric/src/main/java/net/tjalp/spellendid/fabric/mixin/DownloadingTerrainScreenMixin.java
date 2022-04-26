@@ -10,7 +10,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
 
 @Mixin(DownloadingTerrainScreen.class)
-public class DownloadingTerrainScreenMixin {
+abstract class DownloadingTerrainScreenMixin {
 
     private final SpellendidFabric spellendidFabric = SpellendidFabric.INSTANCE;
     private final SpellendidConfig config = spellendidFabric.getConfig();

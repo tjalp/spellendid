@@ -10,7 +10,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(ClientPlayerEntity.class)
-public class ClientPlayerEntityMixin {
+abstract class ClientPlayerEntityMixin {
 
     private final SpellendidFabric spellendidFabric = SpellendidFabric.INSTANCE;
     private final SpellendidConfig config = spellendidFabric.getConfig();
