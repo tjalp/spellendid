@@ -15,9 +15,6 @@ abstract class NetworkHandler<T> {
     /** The connect time **/
     var connectTime: Long = -1; private set
 
-    /** The channel */
-    abstract val channel: T
-
     /**
      * Set up the connection
      */
