@@ -14,5 +14,7 @@
   "option.spellendid.remove_loading_terrain_delay_everywhere.tooltip": "Remove the loading terrain delay everywhere (on every server & world).\nThe 'Remove Loading Terrain Delay' option must be true for this to work",
   "option.spellendid.play_fall_damage_sounds": "Play Fall Damage Sounds",
   "option.spellendid.play_fall_damage_sounds.tooltip": "Whether or not fall damage sounds should be played when falling on the ground",
-  "title.spellendid.config": "Spellendid Configuration"
+  "title.spellendid.config": "Spellendid Configuration",
+  "toast.spellendid.connected.line1": "Connected to Smash Wizards",
+  "toast.spellendid.connected.line2": "Automatically enabled Spellendid"
 }
