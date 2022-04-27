@@ -17,6 +17,6 @@ class MatchInfoPacket(buf: ByteBuf) : SwPacket(buf) {
         val currentPlayers = buf.readInt()
         val maxPlayers = buf.readInt()
 
-        spellendid.tracker.currentMatch = Match(Match.Type.valueOf(matchType.uppercase()), currentPlayers, maxPlayers)
+        spellendid.tracker.currentMatch = Match(Match.Type.fromString(matchType), currentPlayers, maxPlayers)
     }
 }

@@ -59,9 +59,16 @@ class RichPresenceFeature {
 
         this.client.sendRichPresence(
             RichPresence.Builder().apply {
-                setDetails("play.smashwizards.net")
-                if (config.richPresenceDisplayServer && currentServer != null) setState("Connected to $currentServer")
-                if (currentMatch != null) setParty(UUID.randomUUID().toString(), currentMatch.currentPlayers, currentMatch.maxPlayers)
+
+                if (currentMatch != null) {
+                    if (config.richPresenceDisplayServer && currentServer != null) setDetails("Connected to $currentServer")
+                    setState("Playing ${currentMatch.type.friendlyName}")
+                    setParty(UUID.randomUUID().toString(), currentMatch.currentPlayers, currentMatch.maxPlayers)
+                } else {
+                    setDetails("play.smashwizards.net")
+                    if (config.richPresenceDisplayServer && currentServer != null) setState("Connected to $currentServer")
+                }
+
                 if (config.richPresenceDisplayTime) setStartTimestamp(OffsetDateTime.ofInstant(Instant.ofEpochSecond(handler.connectTime), ZoneId.systemDefault()))
                 setLargeImage("sw-icon-fancy")
             }.build()
