@@ -14,7 +14,7 @@
   },
   "license": "GNU General Public License v3.0 (GPLv3)",
   "icon": "assets/spellendid/icon.png",
-  "environment": "*",
+  "environment": "client",
   "entrypoints": {
     "client": [
       {
