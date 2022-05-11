@@ -62,7 +62,7 @@ class RichPresenceFeature {
 
                 if (currentMatch != null) {
                     if (config.richPresenceDisplayServer && currentServer != null) setDetails("Connected to $currentServer")
-                    setState("Playing ${currentMatch.type.friendlyName}")
+                    setState("Playing ${currentMatch.type}")
                     setParty(UUID.randomUUID().toString(), currentMatch.currentPlayers, currentMatch.maxPlayers)
                 } else {
                     setDetails("play.smashwizards.net")
