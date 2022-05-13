@@ -1,6 +1,11 @@
 {
   "category.spellendid.discord": "Discord",
   "category.spellendid.general": "General",
+  "key.spellendid.spell.1": "Spell #1",
+  "key.spellendid.spell.2": "Spell #2",
+  "key.spellendid.spell.3": "Spell #3",
+  "key.spellendid.spell.4": "Spell #4",
+  "key.spellendid.spell.5": "Spell #5",
   "option.spellendid.api_key": "API Key",
   "option.spellendid.api_key.tooltip": "Enter your Smash Wizards API key here to unlock more features",
   "option.spellendid.enable_rich_presence": "Enable Discord Rich Presence",

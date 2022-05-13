@@ -43,6 +43,8 @@ abstract class Spellendid {
         // Initialize the config
         this.config = SpellendidConfig.read(this.configPath)
 
+        initKeybindings()
+
         RichPresenceFeature().init()
     }
 
@@ -50,6 +52,11 @@ abstract class Spellendid {
      * Initialize the current platform
      */
     abstract fun initPlatform(): Platform
+
+    /**
+     * Initialize the keybindings
+     */
+    abstract fun initKeybindings()
 
     companion object {
 
