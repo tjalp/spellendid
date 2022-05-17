@@ -3,11 +3,14 @@ package net.tjalp.spellendid.fabric
 import net.fabricmc.api.ClientModInitializer
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents
 import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper
+import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking
 import net.fabricmc.loader.api.metadata.ModMetadata
 import net.fabricmc.loader.impl.FabricLoaderImpl
 import net.minecraft.client.MinecraftClient
 import net.minecraft.client.option.KeyBinding
 import net.minecraft.client.util.InputUtil.Type.KEYSYM
+import net.minecraft.network.packet.c2s.play.PlayerActionC2SPacket
+import net.minecraft.util.math.BlockPos
 import net.tjalp.spellendid.core.Spellendid
 import net.tjalp.spellendid.core.networking.NetworkHandler
 import net.tjalp.spellendid.core.platform.Platform
@@ -35,6 +38,14 @@ object SpellendidFabric : ClientModInitializer, Spellendid() {
 
     override fun initKeybindings() {
         val binds = mutableListOf<Pair<KeyBinding, Int>>()
+        val swapKeyBinding = KeyBindingHelper.registerKeyBinding(
+            KeyBinding(
+                "key.spellendid.spell.swap",
+                KEYSYM,
+                GLFW_KEY_UNKNOWN, // Setting the keybindings to an unknown key so it can be an optional feature
+                "title.spellendid"
+            )
+        )
 
         repeat(5) {
             val keybinding = KeyBindingHelper.registerKeyBinding(
@@ -54,11 +65,24 @@ object SpellendidFabric : ClientModInitializer, Spellendid() {
 
             if (!networkHandler.connected) return@EndTick
 
-            val inventory = client.player?.inventory
+            val player = client.player
+            val inventory = player?.inventory
 
             binds.forEach { (bind, index) ->
                 while (bind.wasPressed()) {
                     inventory?.selectedSlot = index
+                }
+            }
+
+            while (swapKeyBinding.wasPressed()) {
+                if (player != null) {
+                    MinecraftClient.getInstance().networkHandler?.sendPacket(
+                        PlayerActionC2SPacket(
+                            PlayerActionC2SPacket.Action.SWAP_ITEM_WITH_OFFHAND,
+                            player.blockPos,
+                            player.movementDirection
+                        )
+                    )
                 }
             }
         })
