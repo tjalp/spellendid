@@ -55,16 +55,14 @@ class FabricNetworkHandler : NetworkHandler<Identifier>() {
         Spellendid.LOGGER.warn("Connected to Smash Wizards!")
         super.connect()
 
-        EXECUTOR_SERVICE.schedule({
-            if (connected) {
-                SystemToast.add(
-                    MinecraftClient.getInstance().toastManager,
-                    SystemToast.Type.PERIODIC_NOTIFICATION,
-                    translatable("toast.spellendid.connected.line1"),
-                    translatable("toast.spellendid.connected.line2"),
-                )
-            }
-        }, 2L, TimeUnit.SECONDS)
+        if (connected) {
+            SystemToast.add(
+                MinecraftClient.getInstance().toastManager,
+                SystemToast.Type.PERIODIC_NOTIFICATION,
+                translatable("toast.spellendid.connected.line1"),
+                translatable("toast.spellendid.connected.line2"),
+            )
+        }
     }
 
     override fun disconnect() {
