@@ -7,7 +7,7 @@ import net.tjalp.spellendid.core.networking.SwPacket
 /**
  * The match info packet contains data from the current game, is usually only sent once per match
  */
-class MatchInfoPacket(buf: ByteBuf) : SwPacket(buf) {
+class MatchInfoPacket(private val buf: ByteBuf) : SwPacket() {
 
     override fun handle() {
         // Get length from first char sequence from netty buffer

@@ -2,18 +2,14 @@ package net.tjalp.spellendid.fabric.networking
 
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayConnectionEvents
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking
+import net.fabricmc.fabric.api.networking.v1.PayloadTypeRegistry
 import net.minecraft.client.MinecraftClient
 import net.minecraft.client.toast.SystemToast
-import net.minecraft.text.TranslatableText
+import net.minecraft.text.Text.translatable
 import net.minecraft.util.Identifier
 import net.tjalp.spellendid.core.Spellendid
-import net.tjalp.spellendid.core.networking.HANDSHAKE
-import net.tjalp.spellendid.core.networking.MATCH_INFO
 import net.tjalp.spellendid.core.networking.NetworkHandler
-import net.tjalp.spellendid.core.networking.SERVER_INFO
 import net.tjalp.spellendid.core.networking.packet.HandshakePacket
-import net.tjalp.spellendid.core.networking.packet.MatchInfoPacket
-import net.tjalp.spellendid.core.networking.packet.ServerInfoPacket
 import net.tjalp.spellendid.core.util.EXECUTOR_SERVICE
 import net.tjalp.spellendid.fabric.SpellendidFabric
 import java.util.concurrent.TimeUnit
@@ -30,11 +26,13 @@ class FabricNetworkHandler : NetworkHandler<Identifier>() {
             }
         }
 
-        // TODO - Make a seperate class for every packet
+        // TODO - Make a separate class for every packet
+
+        PayloadTypeRegistry.playS2C().register(ClientboundHandshakePacket.ID, ClientboundHandshakePacket.CODEC)
 
         // Handshake to connect
-        ClientPlayNetworking.registerGlobalReceiver(Identifier(HANDSHAKE)) { _, _, buf, _ ->
-            HandshakePacket(buf).handle()
+        ClientPlayNetworking.registerGlobalReceiver(ClientboundHandshakePacket.ID) { payload, context ->
+            HandshakePacket().handle()
         }
 
         // Disconnection
@@ -42,15 +40,15 @@ class FabricNetworkHandler : NetworkHandler<Identifier>() {
             if (connected) disconnect()
         }
 
-        // Match info packet
-        ClientPlayNetworking.registerGlobalReceiver(Identifier(MATCH_INFO)) { _, _, buf, _ ->
-            MatchInfoPacket(buf).handle()
-        }
-
-        // Server info packet
-        ClientPlayNetworking.registerGlobalReceiver(Identifier(SERVER_INFO)) { _, _, buf, _ ->
-            ServerInfoPacket(buf).handle()
-        }
+//        // Match info packet
+//        ClientPlayNetworking.registerGlobalReceiver(Identifier(MATCH_INFO)) { _, _, buf, _ ->
+//            MatchInfoPacket(buf).handle()
+//        }
+//
+//        // Server info packet
+//        ClientPlayNetworking.registerGlobalReceiver(Identifier(SERVER_INFO)) { _, _, buf, _ ->
+//            ServerInfoPacket(buf).handle()
+//        }
     }
 
     override fun connect() {
@@ -61,9 +59,9 @@ class FabricNetworkHandler : NetworkHandler<Identifier>() {
             if (connected) {
                 SystemToast.add(
                     MinecraftClient.getInstance().toastManager,
-                    SystemToast.Type.TUTORIAL_HINT,
-                    TranslatableText("toast.spellendid.connected.line1"),
-                    TranslatableText("toast.spellendid.connected.line2"),
+                    SystemToast.Type.PERIODIC_NOTIFICATION,
+                    translatable("toast.spellendid.connected.line1"),
+                    translatable("toast.spellendid.connected.line2"),
                 )
             }
         }, 2L, TimeUnit.SECONDS)

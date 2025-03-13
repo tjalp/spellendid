@@ -7,7 +7,7 @@ import net.tjalp.spellendid.core.networking.SwPacket
 /**
  * The handshake packet stating that this is Smash Wizards
  */
-class HandshakePacket(buf: ByteBuf) : SwPacket(buf) {
+class HandshakePacket : SwPacket() {
 
     private val networkHandler: NetworkHandler<*> = spellendid.networkHandler
 

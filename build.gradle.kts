@@ -1,6 +1,8 @@
 plugins {
     val kotlinVersion: String by System.getProperties()
+    val loomVersion: String by System.getProperties()
     kotlin("jvm").version(kotlinVersion)
+    id("fabric-loom").version(loomVersion).apply(false)
 }
 
 repositories {
@@ -25,17 +27,15 @@ subprojects {
     }
 
     tasks {
-        val javaVersion = JavaVersion.VERSION_17
+        val javaVersion = JavaVersion.VERSION_21
         withType<JavaCompile> {
             options.encoding = "UTF-8"
-            sourceCompatibility = javaVersion.toString()
-            targetCompatibility = javaVersion.toString()
             options.release.set(javaVersion.toString().toInt())
         }
-        withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
-            kotlinOptions { jvmTarget = javaVersion.toString() }
-            sourceCompatibility = javaVersion.toString()
-            targetCompatibility = javaVersion.toString()
+        withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach {
+            kotlinOptions {
+                jvmTarget = javaVersion.toString()
+            }
         }
         jar { from("LICENSE") { rename { "${it}_${base.archivesName}" } } }
         processResources {

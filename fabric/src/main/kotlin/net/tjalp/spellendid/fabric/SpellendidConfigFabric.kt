@@ -2,7 +2,7 @@ package net.tjalp.spellendid.fabric
 
 import me.shedaniel.clothconfig2.api.ConfigBuilder
 import net.minecraft.client.gui.screen.Screen
-import net.minecraft.text.TranslatableText
+import net.minecraft.text.Text.translatable
 import net.tjalp.spellendid.core.SpellendidConfig
 
 object SpellendidConfigFabric {
@@ -11,12 +11,12 @@ object SpellendidConfigFabric {
         val config = SpellendidFabric.config
         val builder = ConfigBuilder.create()
             .setParentScreen(parent)
-            .setTitle(TranslatableText("title.spellendid.config"))
+            .setTitle(translatable("title.spellendid.config"))
 
-        builder.getOrCreateCategory(TranslatableText("category.spellendid.general")).apply {
+        builder.getOrCreateCategory(translatable("category.spellendid.general")).apply {
             addEntry(builder.entryBuilder()
-                .startStrField(TranslatableText("option.spellendid.api_key"), config.apiKey)
-                .setTooltip(TranslatableText("option.spellendid.api_key.tooltip"))
+                .startStrField(translatable("option.spellendid.api_key"), config.apiKey)
+                .setTooltip(translatable("option.spellendid.api_key.tooltip"))
                 .setDefaultValue("")
                 .setSaveConsumer {
                     config.apiKey = it
@@ -24,8 +24,8 @@ object SpellendidConfigFabric {
                 .build())
 
             addEntry(builder.entryBuilder()
-                .startBooleanToggle(TranslatableText("option.spellendid.remove_loading_terrain_delay"), config.removeLoadingTerrainDelay)
-                .setTooltip(TranslatableText("option.spellendid.remove_loading_terrain_delay.tooltip"))
+                .startBooleanToggle(translatable("option.spellendid.remove_loading_terrain_delay"), config.removeLoadingTerrainDelay)
+                .setTooltip(translatable("option.spellendid.remove_loading_terrain_delay.tooltip"))
                 .setDefaultValue(true)
                 .setSaveConsumer {
                     config.removeLoadingTerrainDelay = it
@@ -33,8 +33,8 @@ object SpellendidConfigFabric {
                 .build())
 
             addEntry(builder.entryBuilder()
-                .startBooleanToggle(TranslatableText("option.spellendid.remove_loading_terrain_delay_everywhere"), config.removeLoadingTerrainDelayEverywhere)
-                .setTooltip(TranslatableText("option.spellendid.remove_loading_terrain_delay_everywhere.tooltip"))
+                .startBooleanToggle(translatable("option.spellendid.remove_loading_terrain_delay_everywhere"), config.removeLoadingTerrainDelayEverywhere)
+                .setTooltip(translatable("option.spellendid.remove_loading_terrain_delay_everywhere.tooltip"))
                 .setDefaultValue(true)
                 .setSaveConsumer {
                     config.removeLoadingTerrainDelayEverywhere = it
@@ -42,8 +42,8 @@ object SpellendidConfigFabric {
                 .build())
 
             addEntry(builder.entryBuilder()
-                .startBooleanToggle(TranslatableText("option.spellendid.play_fall_damage_sounds"), config.playFallDamageSounds)
-                .setTooltip(TranslatableText("option.spellendid.play_fall_damage_sounds.tooltip"))
+                .startBooleanToggle(translatable("option.spellendid.play_fall_damage_sounds"), config.playFallDamageSounds)
+                .setTooltip(translatable("option.spellendid.play_fall_damage_sounds.tooltip"))
                 .setDefaultValue(false)
                 .setSaveConsumer {
                     config.playFallDamageSounds = it
@@ -51,10 +51,10 @@ object SpellendidConfigFabric {
                 .build())
         }
 
-        builder.getOrCreateCategory(TranslatableText("category.spellendid.discord")).apply {
+        builder.getOrCreateCategory(translatable("category.spellendid.discord")).apply {
             addEntry(builder.entryBuilder()
-                .startBooleanToggle(TranslatableText("option.spellendid.enable_rich_presence"), config.enableRichPresenceFeature)
-                .setTooltip(TranslatableText("option.spellendid.enable_rich_presence.tooltip"))
+                .startBooleanToggle(translatable("option.spellendid.enable_rich_presence"), config.enableRichPresenceFeature)
+                .setTooltip(translatable("option.spellendid.enable_rich_presence.tooltip"))
                 .setDefaultValue(true)
                 .setSaveConsumer {
                     config.enableRichPresenceFeature = it
@@ -62,8 +62,8 @@ object SpellendidConfigFabric {
                 .build())
 
             addEntry(builder.entryBuilder()
-                .startBooleanToggle(TranslatableText("option.spellendid.rich_presence_display_time"), config.richPresenceDisplayTime)
-                .setTooltip(TranslatableText("option.spellendid.rich_presence_display_time.tooltip"))
+                .startBooleanToggle(translatable("option.spellendid.rich_presence_display_time"), config.richPresenceDisplayTime)
+                .setTooltip(translatable("option.spellendid.rich_presence_display_time.tooltip"))
                 .setDefaultValue(true)
                 .setSaveConsumer {
                     config.richPresenceDisplayTime = it
@@ -71,8 +71,8 @@ object SpellendidConfigFabric {
                 .build())
 
             addEntry(builder.entryBuilder()
-                .startBooleanToggle(TranslatableText("option.spellendid.rich_presence_display_server"), config.richPresenceDisplayServer)
-                .setTooltip(TranslatableText("option.spellendid.rich_presence_display_server.tooltip"))
+                .startBooleanToggle(translatable("option.spellendid.rich_presence_display_server"), config.richPresenceDisplayServer)
+                .setTooltip(translatable("option.spellendid.rich_presence_display_server.tooltip"))
                 .setDefaultValue(true)
                 .setSaveConsumer {
                     config.richPresenceDisplayServer = it
